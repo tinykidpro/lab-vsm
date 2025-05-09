@@ -10,63 +10,63 @@ const normalIps = [
 ];
 
 const logTypes = [
-    // Log HTTP 200 OK
+    // Log HTTP 200 OK (20%)
     () => ({
         sourceIp: normalIps[Math.floor(Math.random() * normalIps.length)],
         destination: '192.168.1.10',
         port: Math.random() > 0.5 ? 80 : 443,
         message: 'HTTP 200 OK'
     }),
-    // Log HTTPS Connection
+    // Log HTTPS Connection (15%)
     () => ({
         sourceIp: normalIps[Math.floor(Math.random() * normalIps.length)],
         destination: '192.168.1.10',
         port: 443,
         message: 'HTTPS connection established'
     }),
-    // Log DNS Query
+    // Log DNS Query (15%)
     () => ({
         sourceIp: normalIps[Math.floor(Math.random() * normalIps.length)],
         destination: '192.168.1.12',
         port: 53,
         message: 'DNS query processed'
     }),
-    // Log NTP Sync
+    // Log NTP Sync (15%)
     () => ({
         sourceIp: normalIps[Math.floor(Math.random() * normalIps.length)],
         destination: '192.168.1.12',
         port: 123,
         message: 'NTP time synchronization'
     }),
-    // Log FTP Connection
+    // Log FTP Connection (15%)
     () => ({
         sourceIp: normalIps[Math.floor(Math.random() * normalIps.length)],
         destination: '192.168.1.21',
         port: 21,
         message: 'FTP connection established'
     }),
-    // Log SMB Connection
+    // Log SMB Connection (10%)
     () => ({
         sourceIp: normalIps[Math.floor(Math.random() * normalIps.length)],
         destination: '192.168.1.20',
         port: 445,
         message: 'SMB connection established'
     }),
-    // Log ICMP Echo Reply
+    // Log ICMP Echo Reply (5%)
     () => ({
         sourceIp: normalIps[Math.floor(Math.random() * normalIps.length)],
         destination: '192.168.1.20',
         port: 0,
         message: 'ICMP echo reply'
     }),
-    // Log SSH từ IP nội bộ
+    // Log SSH từ IP nội bộ (2.5%)
     () => ({
         sourceIp: '192.168.1.20',
         destination: '192.168.1.11',
         port: 22,
         message: 'SSH connection established'
     }),
-    // Log SSH từ hacker
+    // Log SSH từ hacker (2.5% khi chưa bị chặn)
     () => ({
         sourceIp: hackerIp,
         destination: '192.168.1.11',
@@ -86,64 +86,47 @@ function startLogs() {
                 const hackerBlocked = response.hackerBlocked;
                 let logEntry;
 
-                    if (!hackerBlocked) {
-                        const logType = Math.random();
-                        if (logType < 0.2) {
-                            // 20% khả năng là log HTTP 200 OK
-                            logEntry = logTypes[0]();
-                        } else if (logType < 0.35) {
-                            // 15% khả năng là log HTTPS Connection
-                            logEntry = logTypes[1]();
-                        } else if (logType < 0.5) {
-                            // 15% khả năng là log DNS Query
-                            logEntry = logTypes[2]();
-                        } else if (logType < 0.65) {
-                            // 15% khả năng là log NTP Sync
-                            logEntry = logTypes[3]();
-                        } else if (logType < 0.8) {
-                            // 15% khả năng là log FTP Connection
-                            logEntry = logTypes[4]();
-                        } else if (logType < 0.9) {
-                            // 10% khả năng là log SMB Connection
-                            logEntry = logTypes[5]();
-                        } else if (logType < 0.95) {
-                            // 5% khả năng là log ICMP Echo Reply
-                            logEntry = logTypes[6]();
-                        } else if (logType < 0.975) {
-                            // 2.5% khả năng là SSH từ IP nội bộ
-                            logEntry = logTypes[7]();
-                        } else {
-                            // 2.5% khả năng là SSH từ hacker
-                            logEntry = logTypes[8]();
-                        }
+                if (!hackerBlocked) {
+                    const logType = Math.random();
+                    if (logType < 0.20) {
+                        logEntry = logTypes[0](); // HTTP 200 OK (20%)
+                    } else if (logType < 0.35) {
+                        logEntry = logTypes[1](); // HTTPS Connection (15%)
+                    } else if (logType < 0.50) {
+                        logEntry = logTypes[2](); // DNS Query (15%)
+                    } else if (logType < 0.65) {
+                        logEntry = logTypes[3](); // NTP Sync (15%)
+                    } else if (logType < 0.80) {
+                        logEntry = logTypes[4](); // FTP Connection (15%)
+                    } else if (logType < 0.90) {
+                        logEntry = logTypes[5](); // SMB Connection (10%)
+                    } else if (logType < 0.95) {
+                        logEntry = logTypes[6](); // ICMP Echo Reply (5%)
+                    } else if (logType < 0.975) {
+                        logEntry = logTypes[7](); // SSH từ IP nội bộ (2.5%)
                     } else {
-                        const logType = Math.random();
-                        if (logType < 0.25) {
-                            // 25% khả năng là log HTTP 200 OK
-                            logEntry = logTypes[0]();
-                        } else if (logType < 0.45) {
-                            // 20% khả năng là log HTTPS Connection
-                            logEntry = logTypes[1]();
-                        } else if (logType < 0.6) {
-                            // 15% khả năng là log DNS Query
-                            logEntry = logTypes[2]();
-                        } else if (logType < 0.75) {
-                            // 15% khả năng là log NTP Sync
-                            logEntry = logTypes[3]();
-                        } else if (logType < 0.9) {
-                            // 15% khả năng là log FTP Connection
-                            logEntry = logTypes[4]();
-                        } else if (logType < 0.95) {
-                            // 5% khả năng là log SMB Connection
-                            logEntry = logTypes[5]();
-                        } else if (logType < 0.975) {
-                            // 2.5% khả năng là log ICMP Echo Reply
-                            logEntry = logTypes[6]();
-                        } else {
-                            // 2.5% khả năng là SSH từ IP nội bộ
-                            logEntry = logTypes[7]();
-                        }
+                        logEntry = logTypes[8](); // SSH từ hacker (2.5%)
                     }
+                } else {
+                    const logType = Math.random();
+                    if (logType < 0.20) {
+                        logEntry = logTypes[0](); // HTTP 200 OK (20%)
+                    } else if (logType < 0.35) {
+                        logEntry = logTypes[1](); // HTTPS Connection (15%)
+                    } else if (logType < 0.50) {
+                        logEntry = logTypes[2](); // DNS Query (15%)
+                    } else if (logType < 0.65) {
+                        logEntry = logTypes[3](); // NTP Sync (15%)
+                    } else if (logType < 0.80) {
+                        logEntry = logTypes[4](); // FTP Connection (15%)
+                    } else if (logType < 0.90) {
+                        logEntry = logTypes[5](); // SMB Connection (10%)
+                    } else if (logType < 0.975) {
+                        logEntry = logTypes[6](); // ICMP Echo Reply (7.5%)
+                    } else {
+                        logEntry = logTypes[7](); // SSH từ IP nội bộ (2.5%)
+                    }
+                }
 
                 const timestamp = new Date().toLocaleTimeString();
                 const row = document.createElement('tr');
