@@ -1,0 +1,206 @@
+/* dashboard.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0d1b2a, #1b263b); /* Nền gradient xanh dương đậm đến đen */
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Container cho hiệu ứng particles.js */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0; /* Đặt phía sau nội dung */
+}
+
+.dashboard-container {
+    max-width: 1024px;
+    width: 90%;
+    margin: 60px auto;
+    padding: 40px;
+    background: rgba(30, 41, 59, 0.9); /* Nền tối với độ trong suốt nhẹ */
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 15px rgba(64, 196, 255, 0.3);
+    border: 1px solid rgba(64, 196, 255, 0.4);
+    position: relative;
+    z-index: 1; /* Đặt phía trên hiệu ứng nền */
+}
+
+.dashboard-container h1 {
+    text-align: center;
+    color: #ffffff; /* Chữ trắng sáng */
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px rgba(64, 196, 255, 0.5);
+}
+
+.user-info {
+    margin-bottom: 40px;
+    padding: 25px;
+    background: rgba(45, 55, 72, 0.9); /* Nền tối hơn */
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(64, 196, 255, 0.4);
+    box-shadow: 0 0 15px rgba(64, 196, 255, 0.3);
+}
+
+.user-info p {
+    margin: 10px 0;
+    font-size: 20px;
+    color: #ffffff; /* Chữ trắng sáng */
+    font-weight: 400;
+    text-shadow: 0 0 5px rgba(64, 196, 255, 0.3);
+}
+
+.user-info .score {
+    font-size: 28px;
+    font-weight: 700;
+    color: #40c4ff; /* Xanh lam sáng */
+    text-shadow: 0 0 8px rgba(64, 196, 255, 0.5);
+}
+
+h2 {
+    color: #ffffff; /* Chữ trắng sáng */
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-shadow: 0 0 5px rgba(64, 196, 255, 0.3);
+}
+
+.case-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Tăng khoảng cách giữa các case */
+}
+
+.case-item {
+    padding: 25px;
+    background: rgba(45, 55, 72, 0.9); /* Nền tối hơn */
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(64, 196, 255, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 10px rgba(64, 196, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    gap: 30px;
+}
+
+.case-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(64, 196, 255, 0.5);
+}
+
+.case-item div {
+    flex: 1;
+}
+
+.case-item h3 {
+    margin: 0;
+    font-size: 24px;
+    color: #ffffff; /* Chữ trắng sáng */
+    font-weight: 500;
+    text-shadow: 0 0 5px rgba(64, 196, 255, 0.3);
+}
+
+.case-item p {
+    margin: 8px 0;
+    color: #e0e0e0; /* Chữ xám sáng để dễ đọc */
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.case-item .case-score {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #ffffff; /* Chữ trắng sáng */
+    text-shadow: 0 0 3px rgba(64, 196, 255, 0.3);
+}
+
+.case-item .achieved-score {
+    color: #40c4ff; /* Xanh lam sáng */
+    font-weight: 500;
+}
+
+.case-item .max-score {
+    color: #ab47bc; /* Tím nhạt */
+    font-weight: 500;
+}
+
+.case-item button {
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #40c4ff, #0288d1); /* Gradient xanh lam */
+    color: #ffffff; /* Chữ trắng */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 15px rgba(64, 196, 255, 0.5);
+    flex-shrink: 0;
+}
+
+.case-item button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(64, 196, 255, 0.8);
+}
+
+.logout-btn {
+    display: block;
+    margin: 40px auto;
+    padding: 14px 30px;
+    background: linear-gradient(135deg, #40c4ff, #0288d1); /* Gradient xanh lam */
+    color: #ffffff; /* Chữ trắng */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 15px rgba(64, 196, 255, 0.5);
+}
+
+.logout-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(64, 196, 255, 0.8);
+}
+
+.footer {
+    margin-top: auto;
+    padding: 25px 0;
+    background: rgba(10, 10, 20, 0.9);
+    color: #e0e0e0;
+    text-align: center;
+    border-top: 1px solid rgba(64, 196, 255, 0.4);
+    position: relative;
+    z-index: 1; /* Đặt phía trên hiệu ứng nền */
+}
+
+.footer p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.footer a {
+    color: #40c4ff;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.footer a:hover {
+    color: #ab47bc;
+    text-shadow: 0 0 8px rgba(171, 71, 188, 0.5);
+}
